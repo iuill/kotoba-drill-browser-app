@@ -1,0 +1,39 @@
+* text=auto eol=lf
+
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.svg text eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.avif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.wav binary
+*.mp3 binary
+*.m4a binary
+*.aac binary
+*.ogg binary
+*.opus binary
+*.flac binary
+*.webm binary
+*.mp4 binary
+*.onnx binary
+*.bin binary
+*.safetensors binary
+*.wasm binary
+*.zip binary
+*.gz binary
+*.pdf binary
+
+# 出典原文と生成された表示は保持し、PRでは実装差分を優先して表示する。
+public/licenses.txt linguist-generated=true
+public/licenses.html linguist-generated=true
+docs/licenses/* linguist-vendored=true
+src/audio/sample-voices-manifest.json linguist-generated=true
+public/audio/samples/*/checksums.json linguist-generated=true

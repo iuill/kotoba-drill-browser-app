@@ -1,0 +1,36 @@
+{
+  "name": "kotoba-drill-browser-app",
+  "dockerComposeFile": "../compose.yaml",
+  "service": "dev",
+  "workspaceFolder": "/workspaces/main",
+  "shutdownAction": "stopCompose",
+  "remoteUser": "node",
+  "remoteEnv": {
+    "PATH": "${localEnv:HOME}/.codex/packages/standalone/current/bin:${containerEnv:PATH}"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": { "version": "2.98.0" }
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/.codex/packages/standalone,target=${localEnv:HOME}/.codex/packages/standalone,type=bind,readonly",
+    "source=${localEnv:HOME}/.codex/auth.json,target=/home/node/.codex/auth.json,type=bind",
+    "source=${localEnv:HOME}/.claude/.credentials.json,target=/home/node/.claude/.credentials.json,type=bind",
+    "source=${localEnv:HOME}/.config/gh,target=/home/node/.config/gh,type=bind"
+  ],
+  "initializeCommand": ["bash", ".devcontainer/scripts/ensure-host-auth.sh"],
+  "postCreateCommand": "node .devcontainer/scripts/ensure-claude-onboarding.cjs",
+  "forwardPorts": [5173, 4173],
+  "portsAttributes": {
+    "5173": { "label": "Vite development", "onAutoForward": "silent" },
+    "4173": { "label": "Vite preview", "onAutoForward": "silent" }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "files.eol": "\n"
+      },
+      "extensions": ["EditorConfig.EditorConfig"]
+    }
+  }
+}

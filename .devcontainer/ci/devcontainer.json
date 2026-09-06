@@ -1,0 +1,9 @@
+{
+  "name": "kotoba-drill-browser-app-ci",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": ".."
+  },
+  "remoteUser": "node",
+  "init": true
+}

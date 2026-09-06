@@ -1,0 +1,37 @@
+{
+  "name": "kotoba-drill-browser-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "packageManager": "bun@1.4.0",
+  "scripts": {
+    "dev": "bun --bun vite",
+    "typecheck": "tsc --noEmit",
+    "build": "bun run typecheck && bun --bun vite build",
+    "preview": "bun --bun vite preview",
+    "check": "bun run check:licenses && bun run build && bun run test && bun run test:browser",
+    "test": "bun test tests/unit",
+    "test:browser": "playwright test",
+    "test:install": "playwright install chromium",
+    "check:dependencies": "bun scripts/check-dependency-age.ts",
+    "check:licenses": "bun scripts/generate-licenses.mjs --check",
+    "generate:licenses": "bun scripts/generate-licenses.mjs",
+    "generate:voices": "bun scripts/generate-sample-voices.ts"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "4.2.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.62.1",
+    "@types/node": "26.2.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "@vitejs/plugin-react": "6.1.0",
+    "fake-indexeddb": "6.2.5",
+    "prettier": "3.6.2",
+    "typescript": "7.0.2",
+    "vite": "8.2.2"
+  }
+}

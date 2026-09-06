@@ -1,0 +1,4 @@
+[install]
+# 新規解決する直接・間接依存は、公開後14日以上経過した版に限定する。
+minimumReleaseAge = 1209600
+minimumReleaseAgeExcludes = []
