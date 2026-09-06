@@ -29,6 +29,7 @@ test("追加した男声を試聴して切り替え、再読み込み後も選�
   await dialog
     .getByRole("button", { name: "この設定で使う", exact: true })
     .click();
+  await expect(dialog).toBeHidden();
   await page.reload();
   await page.getByRole("button", { name: "設定・教材", exact: true }).click();
   await expect(page.getByLabel("日本語の声", { exact: true })).toHaveValue(
