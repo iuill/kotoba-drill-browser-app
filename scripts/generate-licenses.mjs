@@ -86,7 +86,7 @@ li { margin: 0.7rem 0; }
 <ul>
 <li><strong>アプリ本体・教材</strong>：ことばドリル（MIT）。内蔵教材は本プロジェクトで作成しています。</li>
 <li><strong>効果音</strong>：<a href="https://kenney.nl/assets/interface-sounds">Kenney Interface Sounds</a>（CC0）。</li>
-<li><strong>見本音声</strong>：<a href="https://voicevox.hiroshiba.jp/nemo/term/">VOICEVOX Nemo</a>（女声1・男声1）、<a href="https://www.zunko.jp/con_ongen_kiyaku.html">VOICEVOX:四国めたん・VOICEVOX:東北ずん子・VOICEVOX:東北きりたん</a>、<a href="https://tsumugi-official.studio.site/rule">VOICEVOX:春日部つむぎ</a>、<a href="https://www.virvoxproject.com/voicevoxの利用規約">VOICEVOX:青山龍星</a>、<a href="https://frontier.creatia.cc/fanclubs/413/posts/4507">VOICEVOX:剣崎雌雄</a>。生成音声には各提供元の利用規約が適用されます。青山龍星は企業・個人事業主等の利用に事前申請・許可が必要です。</li>
+<li><strong>見本音声</strong>：<a href="https://voicevox.hiroshiba.jp/nemo/term/">VOICEVOX Nemo</a>（女声1・男声1）、<a href="https://www.zunko.jp/con_ongen_kiyaku.html">VOICEVOX:四国めたん・VOICEVOX:東北ずん子・VOICEVOX:東北きりたん</a>、<a href="https://tsumugi-official.studio.site/rule">VOICEVOX:春日部つむぎ</a>、<a href="https://frontier.creatia.cc/fanclubs/413/posts/4507">VOICEVOX:剣崎雌雄</a>。生成音声には各提供元の利用規約が適用されます。</li>
 <li><strong>認識モデル</strong>：<a href="https://github.com/openai/whisper">OpenAI Whisper</a>、<a href="https://huggingface.co/kotoba-tech/kotoba-whisper-v2.2">Kotoba-Whisper</a>、<a href="https://huggingface.co/CohereLabs/cohere-transcribe-03-2026">Cohere Transcribe</a>。ONNX版の配布は<a href="https://huggingface.co/onnx-community">ONNX Community</a>。</li>
 <li><strong>主な使用ライブラリ</strong>：React、Transformers.js、ONNX Runtime Webなど。</li>
 </ul>

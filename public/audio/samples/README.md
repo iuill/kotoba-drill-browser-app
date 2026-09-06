@@ -10,7 +10,6 @@
 - **VOICEVOX Nemo**（女声1・男声1）：https://voicevox.hiroshiba.jp/nemo/term/
 - **VOICEVOX:四国めたん**、**VOICEVOX:東北ずん子**、**VOICEVOX:東北きりたん**：https://www.zunko.jp/con_ongen_kiyaku.html
 - **VOICEVOX:春日部つむぎ**：https://tsumugi-official.studio.site/rule
-- **VOICEVOX:青山龍星**：https://www.virvoxproject.com/voicevoxの利用規約
 - **VOICEVOX:剣崎雌雄**：https://frontier.creatia.cc/fanclubs/413/posts/4507
 - VOICEVOX共通：https://voicevox.hiroshiba.jp/term/
 
@@ -22,7 +21,6 @@ https://tsumugi-official.studio.site/rule2
 公開リポジトリでも音声は各提供元の規約に従うアプリ用素材として扱い、MITによる自由な再配布・機械学習への利用を許諾するものではありません。
 上記は規約全文の代わりではありません。改変・再配布時も各規約に従ってください。
 
-青山龍星は個人の趣味で制作する本アプリに使用します。企業・個人事業主や企業等と契約した個人の利用は、収益の有無にかかわらず「ななはぴ」への事前申請・許可が必要です。音声素材として再配布する場合は、再利用者にもクレジット表示を義務付けてください。出力音声による機械学習等も禁止されています。
 剣崎雌雄はクレジットを表示して利用します。公式イラストは使用しません。公開報告は任意です。政治運動等の勧誘や、故意の誤った医療知識の流布などの禁止用途も規約で確認してください。
 
 ## 生成元と管理情報

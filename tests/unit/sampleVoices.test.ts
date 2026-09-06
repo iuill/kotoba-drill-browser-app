@@ -16,6 +16,11 @@ import {
 import { validatePreferences } from "../../src/storage/store";
 
 test("全出題の収録音声が存在し、マニフェストと内容が一致する", () => {
+  const folders = readdirSync("public/audio/samples", { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .sort();
+  expect(folders).toEqual(sampleVoices.map((voice) => voice.id).sort());
   const readings = new Set([
     ...sounds,
     ...candidates({ ...defaults, sounds, kind: "pair" }, []).map(

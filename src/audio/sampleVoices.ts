@@ -38,12 +38,6 @@ export const sampleVoices = [
     engine: "voicevox",
   },
   {
-    id: "voicevox-ryusei",
-    name: "VOICEVOX 青山龍星",
-    speaker: 13,
-    engine: "voicevox",
-  },
-  {
     id: "voicevox-mesuo",
     name: "VOICEVOX 剣崎雌雄",
     speaker: 21,
