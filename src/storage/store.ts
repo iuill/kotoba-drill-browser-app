@@ -33,6 +33,18 @@ export const initialPreferences = (): Preferences => ({
   words: [],
   prepared: false,
 });
+function migrateRemovedVoice(p: Preferences): Preferences {
+  const migrate = (s: Settings): Settings =>
+    s.voice === "voicevox-ryusei" ? { ...s, voice: defaults.voice } : s;
+  const settings = migrate(p.settings);
+  const sets = p.sets.map((set) => {
+    const settings = migrate(set.settings);
+    return settings === set.settings ? set : { ...set, settings };
+  });
+  return settings === p.settings && sets.every((set, i) => set === p.sets[i])
+    ? p
+    : { ...p, settings, sets };
+}
 function req<T>(r: IDBRequest<T>): Promise<T> {
   return new Promise((resolve, reject) => {
     r.onsuccess = () => resolve(r.result);
@@ -68,13 +80,15 @@ export class Store {
     );
     if (!p) return initialPreferences();
     validatePreferences(p);
-    return p as Preferences;
+    const migrated = migrateRemovedVoice(p);
+    if (migrated !== p) await this.setPreferences(migrated);
+    return migrated;
   }
   async setPreferences(p: Preferences) {
     validatePreferences(p);
     const tx = this.db.transaction("preferences", "readwrite");
     const completion = done(tx);
-    tx.objectStore("preferences").put(p, "current");
+    tx.objectStore("preferences").put(migrateRemovedVoice(p), "current");
     await completion;
   }
   async history() {
@@ -199,7 +213,10 @@ export class Store {
     const completion = done(tx);
     for (const name of ["preferences", "history", "recordings"])
       tx.objectStore(name).clear();
-    tx.objectStore("preferences").put(b.preferences, "current");
+    tx.objectStore("preferences").put(
+      migrateRemovedVoice(b.preferences),
+      "current",
+    );
     b.history.forEach((h) =>
       tx
         .objectStore("history")

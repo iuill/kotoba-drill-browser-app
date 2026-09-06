@@ -12,8 +12,11 @@ test("追加した男声を試聴して切り替え、再読み込み後も選�
     .getByRole("button", { name: "1. 見本を試聴", exact: true })
     .click();
   const dialog = page.getByRole("dialog", { name: "見本の声と速さ" });
+  await expect(dialog.locator('option[value="voicevox-ryusei"]')).toHaveCount(
+    0,
+  );
   await dialog.getByRole("button", { name: "試聴を停止", exact: true }).click();
-  for (const voice of ["voicevox-ryusei", "voicevox-mesuo"]) {
+  for (const voice of ["nemo-male-1", "voicevox-mesuo"]) {
     await dialog.getByLabel("日本語の声", { exact: true }).selectOption(voice);
     await dialog
       .getByRole("button", { name: "この声と速さで試聴", exact: true })

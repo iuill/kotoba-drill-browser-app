@@ -25,6 +25,69 @@ beforeEach(() => {
   globalThis.indexedDB = new IDBFactory();
   temporary.clear();
 });
+test("廃止した見本音声を起動時とバックアップ復元時に移行し、他の設定・録音を保持する", async () => {
+  const s = await Store.open();
+  const legacy = {
+    ...initialPreferences(),
+    settings: { ...prefs.settings, voice: "voicevox-ryusei", rate: 0.7 },
+    sets: [
+      {
+        id: "old",
+        name: "旧設定",
+        settings: { ...prefs.settings, voice: "voicevox-ryusei" },
+      },
+      {
+        id: "browser",
+        name: "ブラウザ音声",
+        settings: { ...prefs.settings, voice: "browser-voice" },
+      },
+    ],
+    words: [{ id: "custom", text: "鞄", reading: "かばん" }],
+  };
+  // 旧版が保存した状態を、新しい保存処理を通さずに作る。
+  const db = await new Promise<IDBDatabase>((resolve, reject) => {
+    const request = indexedDB.open("kotoba-drill", 1);
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
+  await new Promise<void>((resolve, reject) => {
+    const tx = db.transaction("preferences", "readwrite");
+    tx.objectStore("preferences").put(legacy, "current");
+    tx.oncomplete = () => resolve();
+    tx.onerror = tx.onabort = () => reject(tx.error);
+  });
+  db.close();
+  await s.putHistory(h);
+  await s.saveRecording(h.id, new Blob(["recording"], { type: "audio/webm" }));
+  const expected = {
+    ...legacy,
+    settings: { ...legacy.settings, voice: prefs.settings.voice },
+    sets: [
+      {
+        ...legacy.sets[0],
+        settings: { ...legacy.sets[0].settings, voice: prefs.settings.voice },
+      },
+      legacy.sets[1],
+    ],
+  };
+  expect(await s.preferences()).toEqual(expected);
+  const backup = await s.export(false);
+  expect(backup.preferences).toEqual(expected);
+  expect(backup.history).toEqual([h]);
+  expect(await (await s.recording(h.id))?.text()).toBe("recording");
+  await s.restore({
+    ...backup,
+    preferences: legacy,
+    includesRecordings: true,
+    recordings: [{ id: h.id, type: "audio/webm", data: btoa("recording") }],
+  });
+  expect((await s.export(false)).preferences).toEqual(expected);
+  expect(await s.preferences()).toEqual(expected);
+  expect(await s.history()).toEqual([h]);
+  expect(await (await s.recording(h.id))?.text()).toBe("recording");
+  expect(legacy.settings.voice).toBe("voicevox-ryusei");
+  s.close();
+});
 test("保存・録音削除で履歴は残る・履歴削除は録音も削除", async () => {
   const s = await Store.open();
   await s.setPreferences(prefs);
