@@ -114,7 +114,7 @@ SAMPLE_VOICES=nemo-female-1,voicevox-metan bun run generate:voices
 
 ## 静的配信と公開用リポジトリ
 
-[ワークフロー](../.github/workflows/check.yml)はPR・mainへのpush・手動実行で検証し、公開リポジトリのmainへのpushで成功した成果物をGitHub Pagesへ配信します。プライベートの間は検証だけを行い、Pages用成果物のアップロードと配信はスキップします。リポジトリのPages設定で「GitHub Actions」を選び、利用プラン・公開範囲がPagesの利用条件を満たすことを確認してください。検証の成功とdeployの成功は別です。
+[ワークフロー](../.github/workflows/check.yml)はPR・mainへのpush・手動実行で検証し、公開リポジトリのmainへのpush、またはmainを指定した手動実行で成功した成果物をGitHub Pagesへ配信します。プライベートの間は検証だけを行い、Pages用成果物のアップロードと配信はスキップします。リポジトリのPages設定で「GitHub Actions」を選び、利用プラン・公開範囲がPagesの利用条件を満たすことを確認してください。検証の成功とdeployの成功は別です。
 
 Viteの `base: './'` によりリポジトリ配下のURLでも配信できます。他のWebサーバーでは `bun run build` 後の `dist/` 全体をHTTPSで配信します。アプリは起動中のページを強制再読み込みしません。
 
